@@ -1,19 +1,14 @@
 package test.java.tests.ui;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import main.java.pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import main.java.pages.LoginPage;
+import test.java.base.BaseTest;
 
-public class LoginTest {
+public class LoginTest extends BaseTest {
 
     @Test
     public void openLoginPage() {
-
-        WebDriver driver = new ChromeDriver();
-
-        driver.get("https://automationexercise.com/");
 
         LoginPage loginPage = new LoginPage(driver);
 
@@ -23,6 +18,5 @@ public class LoginTest {
 
         Assert.assertEquals(actualText, "Login to your account");
 
-        driver.quit();
     }
 }

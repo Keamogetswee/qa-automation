@@ -27,8 +27,6 @@ public class LoginPage {
     }
 
     public String getLoginHeaderText() {
-        return wait.until(
-                ExpectedConditions.visibilityOfElementLocated(loginHeader)
-        ).getText();
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(loginHeader)).getText();
     }
 }
