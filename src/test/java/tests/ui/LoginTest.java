@@ -1,12 +1,31 @@
 package tests.ui;
 
-import pages.LoginPage;
-import utils.ConfigReader;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 import base.BaseTest;
+import org.testng.Assert;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+import pages.LoginPage;
+import utils.JsonReader;
+
+import java.util.List;
+import java.util.Map;
 
 public class LoginTest extends BaseTest {
+
+    @DataProvider(name = "loginData")
+    public Object[][] getLoginData() {
+
+        List<Map<String, String>> data = JsonReader.getTestData("testdata.json");
+
+        Object[][] result = new Object[data.size()][2];
+
+        for (int i = 0; i < data.size(); i++) {
+            result[i][0] = data.get(i).get("email");
+            result[i][1] = data.get(i).get("password");
+        }
+
+        return result;
+    }
 
     @Test
     public void openLoginPage() {
@@ -21,17 +40,15 @@ public class LoginTest extends BaseTest {
 
     }
 
-    @Test
-    public void invalidLoginTest() {
-
-        ConfigReader config = new ConfigReader();
+    @Test(dataProvider = "loginData")
+    public void invalidLoginTest(String email, String password) {
 
         LoginPage loginPage = new LoginPage(driver);
 
         loginPage.clickLogin();
 
-        loginPage.enterEmail(config.getProperty("invalidEmail"));
-        loginPage.enterPassword(config.getProperty("invalidPassword"));
+        loginPage.enterEmail(email);
+        loginPage.enterPassword(password);
 
         loginPage.clickLoginButton();
 
