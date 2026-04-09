@@ -19,4 +19,20 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(actualText, "Login to your account");
 
     }
+
+    @Test
+    public void invalidLoginTest() {
+
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.clickLogin();
+
+        loginPage.enterEmail("wrong@test.com");
+        loginPage.enterPassword("wrongpassword");
+        loginPage.clickLoginButton();
+
+        String error = loginPage.getErrorMessage();
+
+        Assert.assertTrue(error.contains("incorrect"));
+    }
 }
