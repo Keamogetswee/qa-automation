@@ -1,12 +1,12 @@
 # Selenium Automation Practice Project
 
-A structured UI test automation suite built with Selenium WebDriver, Java, TestNG, and the Page Object Model — targeting [AutomationExercise.com](https://automationexercise.com), a public e-commerce web application built for testing practice.
+A structured UI test automation suite built with Selenium WebDriver, Java, TestNG, and the Page Object Model, targeting [AutomationExercise.com](https://automationexercise.com), a public e-commerce web application built for testing practice.
 
 ---
 
 ## Purpose
 
-This project was built to develop and demonstrate practical automation engineering skills — specifically:
+This project was built to develop and demonstrate practical automation engineering skills, specifically:
 - Structuring a maintainable test suite using the Page Object Model
 - Writing stable, reliable tests using explicit waits
 - Implementing data-driven testing with external test data
@@ -36,10 +36,10 @@ This project was built to develop and demonstrate practical automation engineeri
 ## Key Design Decisions
 
 ### Page Object Model (POM)
-Each page of the application has its own class that holds its locators and the actions that can be performed on it. Tests never interact with locators directly — they call methods on page classes. This means if a UI element changes, only the page class needs updating, not every test that uses it.
+Each page of the application has its own class that holds its locators and the actions that can be performed on it. Tests never interact with locators directly, they call methods on page classes. This means if a UI element changes, only the page class needs updating, not every test that uses it.
 
 ### Explicit Waits
-Every element interaction uses `WebDriverWait` with `ExpectedConditions` — either `visibilityOfElementLocated` or `elementToBeClickable` — depending on what the interaction requires. No `Thread.sleep` is used anywhere. This keeps tests fast and eliminates timing-related flakiness.
+Every element interaction uses `WebDriverWait` with `ExpectedConditions` — either `visibilityOfElementLocated` or `elementToBeClickable`, depending on what the interaction requires. No `Thread.sleep` is used anywhere. This keeps tests fast and eliminates timing-related flakiness.
 
 ### Data-Driven Testing
 The invalid login test reads credentials from an external `testdata.json` file using a `@DataProvider`. This means the same test logic runs against multiple input combinations without duplicating any test code — making it easy to add new test scenarios without touching the test class.
